@@ -1,0 +1,14 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+
+CrawlBrowser/downloads/*
+CrawlBrowser/auth_states/*
+CrawlBrowser/user_data_qwen chat/*
+*.egg-info
+.env
+# Virtual environments
+.venv

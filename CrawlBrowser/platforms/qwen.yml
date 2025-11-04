@@ -1,0 +1,43 @@
+name: "Qwen Chat"
+base-url: "https://chat.qwen.ai"
+
+login:
+  check-timeout: 10000 # 8s 检验登录有效时等待登录完成的超时时间(可根据网络状态调整)
+  op-timeout: 60000 # 用户手动完成登录的时间 1min
+  # === 登录后等待的元素（用于判断是否已登录）===
+  indicator-selector: "div.user-content"  # 需填写，例如: "div.overflow-y-auto >> text=新建对话"
+  mode: "manual" #  手动登录后保存状态  读取账号密码自动登录保存登录状态
+  username-selector: ""
+  password-selector: ""
+
+# === 对话列表 ===
+conversation:
+  load-sidebar-timeout: 10000 # 加载对话列表超时时间（毫秒）
+  load-content-timeout: 10000 # 等待对话内容加载超时（毫秒）
+  sidebar-container: "div.side"      # 包裹所有侧边对话项的容器，例如: "div.overflow-y-auto"
+  group-container-selector: "div.folder-list"
+  group-drag-selector: "div.recursive-folder-collapsible-btn" # 分组选择器
+  group-item-selector: "div.chat-item-drag"
+  group-status-selector: "div.collapsible-group i"
+  group-open-status: "icon-line-chevron-down"
+  group-close-status: "icon-line-chevron-up"
+  item-selector: "div.list-folder div.chat-item-drag"       # 单个对话项，例如: "div.group"
+
+# === 导出功能 ===
+export:
+
+  # 步骤1: 触发导出菜单的按钮
+  trigger-button-selector: "button#chat-context-menu-button"  # ← 请用 DevTools 确认实际选择器
+  trigger-mode: "hover"
+  # 主菜单项通用选择器
+  menu-item-selector: "[role='menuitem']"
+  # 菜单文本关键词（用于识别“下载”或“导出”主项）
+  main-export-keywords: ["下载", "导出", "Download", "Export"]
+
+  # 子菜单中“导出为 JSON”的关键词（可选，若无子菜单可留空）
+  json-export-keywords: ["JSON", "json", "导出为JSON", "Export as JSON"]
+
+  timeout: 10000
+
+# === 下载设置 ===
+download-dir: ""  # 程序控制的下载目录
